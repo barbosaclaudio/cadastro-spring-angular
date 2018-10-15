@@ -5,6 +5,7 @@ import {MatFormFieldModule} from '@angular/material';
 import {MatInputModule} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatButtonModule} from '@angular/material/button';
+import {TableModule} from 'primeng/table';
 
 export const MaterialModule = [
     MatInputModule,
@@ -15,7 +16,8 @@ export const MaterialModule = [
 @NgModule({
     exports: [
       MaterialModule,
-      FlexLayoutModule
+      FlexLayoutModule,
+      TableModule
     ],
     providers: [],
     schemas: [

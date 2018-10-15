@@ -8,6 +8,11 @@ export const routes: Routes = [
       { path: '', pathMatch: 'full', loadChildren: './pessoa/pessoa.module#PessoaModule' },
       { path: ':id', pathMatch: 'full', loadChildren: './pessoa/pessoa.module#PessoaModule' }
     ]
+  },
+  {
+    path: '',
+    pathMatch: 'full',
+    loadChildren: './lista-pessoa/lista-pessoa.module#ListaPessoaModule'
   }
 ];
 
