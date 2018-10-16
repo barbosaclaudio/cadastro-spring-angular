@@ -22,7 +22,11 @@ public class ObterPessoaPorIdUseCaseImpl implements ObterPessoaPorIdUseCase {
     @Override
     public PessoaDTO execute(Long id) {
         Optional<Pessoa> pessoaById = pessoaRepository.findById(id);
-        return null;
+        if(!pessoaById.isPresent()) {
+            return null;
+        }
+        Pessoa pessoa = pessoaById.get();
+        return new PessoaDTO(pessoa.getId(), pessoa.getNome(), pessoa.getTelefone());
     }
 
 
