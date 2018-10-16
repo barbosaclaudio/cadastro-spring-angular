@@ -1,9 +1,8 @@
-package com.pessoa.cadastro;
+package com.pessoa.cadastro.usecases.pessoa.obter.impl;
 
 import com.pessoa.cadastro.model.Pessoa;
 import com.pessoa.cadastro.repository.PessoaRepository;
 import com.pessoa.cadastro.usecases.pessoa.obter.PessoaDTO;
-import com.pessoa.cadastro.usecases.pessoa.obter.impl.ObterPessoaPorIdUseCaseImpl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
