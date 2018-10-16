@@ -1,9 +1,9 @@
 package com.pessoa.cadastro.usecases.pessoa.obter;
 
-import org.springframework.data.domain.Page;
+import com.pessoa.cadastro.usecases.pessoa.obter.impl.PageDTO;
 
 public interface ObterTodasPessoasUseCase {
 
-    Page<PessoaDTO> execute();
+    PageDTO execute(int page, int size);
 
 }
