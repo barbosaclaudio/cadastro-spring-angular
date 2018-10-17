@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import {InputTextModule} from 'primeng/inputtext';
 import { SharedModule } from '../utils/shared.module';
 import { ListaPessoaComponent } from './lista-pessoa.component';
-import { ObterPessoaService } from './service/obter.pessoa.service';
+import { ObterPessoaService } from '../providers/obter-pessoa.service';
 
 const routes = [
     {

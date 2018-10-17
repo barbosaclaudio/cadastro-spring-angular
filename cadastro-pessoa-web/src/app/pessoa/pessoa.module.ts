@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import {InputTextModule} from 'primeng/inputtext';
 import { SharedModule } from '../utils/shared.module';
+import { ObterPessoaService } from '../providers/obter-pessoa.service';
 
 
 const routes = [
@@ -29,7 +30,7 @@ const routes = [
         PessoaComponent
     ],
     providers: [
-        
+        ObterPessoaService
     ]
 })
 

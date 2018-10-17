@@ -1,17 +1,30 @@
-<p-table [columns]="cols" [value]="cars" [lazy]="true" (onLazyLoad)="loadCarsLazy($event)" [paginator]="true" 
-    [rows]="10" [totalRecords]="totalRecords" [loading]="loading">
-    <ng-template pTemplate="header" let-columns>
-        <tr>
-            <th *ngFor="let col of columns">
-                {{col.header}}
-            </th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr>
-            <td *ngFor="let col of columns">
-                {{rowData[col.field]}}
-            </td>
-        </tr>
-    </ng-template>
-</p-table>
+<div fxLayout="column" fxLayoutAlign="space-between none">
+    <div fxLayout="row" fxLayoutAlign="space-between none" class="section">
+        <div fxFlex="90">
+            <label class="title">Cadastro de Pessoas</label>
+        </div>
+        <div fxFlex="10" fxLayoutAlign="end">
+            <button mat-raised-button [routerLink]="['/pessoa']" color="primary">Adicionar</button>
+        </div>
+    </div>
+    <div>
+        <p-table [columns]="cols" [value]="pessoas" [lazy]="true" (onRowSelect)="onRowSelect($event)"
+            (onLazyLoad)="loadPessoasLazy($event)" [paginator]="true" [rows]="15" selectionMode="single"
+            [totalRecords]="totalRecords" [loading]="loading">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns">
+                        {{col.header}}
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                    <td *ngFor="let col of columns">
+                        {{rowData[col.field]}}
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

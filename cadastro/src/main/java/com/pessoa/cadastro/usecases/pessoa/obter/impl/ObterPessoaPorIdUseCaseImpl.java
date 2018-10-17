@@ -1,7 +1,7 @@
 package com.pessoa.cadastro.usecases.pessoa.obter.impl;
 
-import com.pessoa.cadastro.model.Pessoa;
-import com.pessoa.cadastro.repository.PessoaRepository;
+import com.pessoa.cadastro.core.model.Pessoa;
+import com.pessoa.cadastro.core.repository.PessoaRepository;
 import com.pessoa.cadastro.usecases.pessoa.obter.ObterPessoaPorIdUseCase;
 import com.pessoa.cadastro.usecases.pessoa.obter.PessoaDTO;
 import org.springframework.beans.factory.annotation.Autowired;

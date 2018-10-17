@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ObterPessoaService } from './service/obter.pessoa.service';
+import { ObterPessoaService } from '../providers/obter-pessoa.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-pessoa',
@@ -9,18 +10,29 @@ import { ObterPessoaService } from './service/obter.pessoa.service';
 export class ListaPessoaComponent implements OnInit {
 
   pessoas: any[];
-
   cols: any[];
+  totalRecords :number;
 
-  constructor(private obterPessoaService: ObterPessoaService) { }
+  constructor(private router:Router, private obterPessoaService: ObterPessoaService) { }
 
   ngOnInit() {
-      this.obterPessoaService.getPessoasPaginadas().then(pessoas => this.pessoas = pessoas);
-
       this.cols = [
+          { field: 'id', header: 'Id' },
           { field: 'nome', header: 'Nome' },
           { field: 'telefone', header: 'Telefone' }
       ];
   }
+
+  loadPessoasLazy(event: any) {
+    let page = event.first/event.rows;
+    this.obterPessoaService.getPessoasPaginadas(page.toString() , event.rows).subscribe(data => {
+      this.pessoas = data.content;
+      this.totalRecords = data.totalDeElementos;
+    });
+  }
+
+  onRowSelect(event) {
+    this.router.navigate(['pessoa', event.data.id]);
+}
 
 }

@@ -1,4 +1,4 @@
-package com.pessoa.cadastro.model;
+package com.pessoa.cadastro.core.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

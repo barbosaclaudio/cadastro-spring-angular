@@ -1,0 +1,39 @@
+.field-nome {
+    padding-bottom: 20px;
+}
+
+input {
+    width: 420px;
+}
+
+p-inputmask  {
+    width: 420px;  
+}
+
+.field-telefone {
+    width: 100%;
+}
+
+.input-telefone {
+    width: 100%!important;
+}
+
+.title-form {
+    font-size: 16px;
+    text-transform: uppercase;
+    padding-right: 5px;
+    font-family: Verdana;
+}
+
+.btn-center {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.section-main {
+    padding-top: 30px;
+}
+
+.section-btn {
+    padding-top: 30px;
+}

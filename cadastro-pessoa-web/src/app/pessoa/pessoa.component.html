@@ -1,22 +1,28 @@
-<div fxLayout="column" fxFlex="150" fxLayoutAlign="space-around center">
-  <form class="example-form">
+<div fxLayout="column" class="section-main" fxLayoutAlign="start center">
+
+  <div class="ui-inputgroup field-nome">
+    <span class="ui-inputgroup-addon">
+      <i class="pi pi-user"></i>
+    </span>
+    <input type="text" pInputText placeholder="Nome" [(ngModel)]="pessoa.nome">
+  </div>
+
+  <div>
+    <label class="title-form">Telefone:</label>
+    <p-inputMask styleClass="input-telefone" [(ngModel)]="pessoa.telefone" mask="(999) 99999-9999"></p-inputMask>
+  </div>
+
+
+  <div class="section-btn" fxLayoutAlign="space-between none">
     <div>
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Nome" value="Sushi">
-      </mat-form-field>
+      <button mat-raised-button color="none" [routerLink]="['/']">Voltar</button>
     </div>
-
+    <div class="btn-center">
+      <button *ngIf="pessoa?.id != null" mat-raised-button color="warn" (click)="excluir()">Excluir</button>
+    </div>
     <div>
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Telefone" value="Sushi">
-      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
     </div>
+  </div>
 
-
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-      <button mat-raised-button color="warn">Excluir</button>
-      <button mat-raised-button color="primary">Salvar</button>
-    </div>
-
-  </form>
 </div>

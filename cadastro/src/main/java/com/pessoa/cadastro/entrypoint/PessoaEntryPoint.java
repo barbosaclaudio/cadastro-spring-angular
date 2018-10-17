@@ -1,5 +1,6 @@
 package com.pessoa.cadastro.entrypoint;
 
+import com.pessoa.cadastro.usecases.pessoa.deletar.DeletarPessoaUseCase;
 import com.pessoa.cadastro.usecases.pessoa.atualizar.AtualizarPessoaUseCase;
 import com.pessoa.cadastro.usecases.pessoa.obter.ObterPessoaPorIdUseCase;
 import com.pessoa.cadastro.usecases.pessoa.obter.ObterTodasPessoasUseCase;
@@ -7,13 +8,12 @@ import com.pessoa.cadastro.usecases.pessoa.obter.PessoaDTO;
 import com.pessoa.cadastro.usecases.pessoa.obter.impl.PageDTO;
 import com.pessoa.cadastro.usecases.pessoa.salvar.SalvarPessoaUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 
 @RestController
@@ -24,14 +24,16 @@ public class PessoaEntryPoint extends GenericController {
     private ObterPessoaPorIdUseCase obterPessoaPorIdUseCase;
     private SalvarPessoaUseCase salvarPessoaUseCase;
     private AtualizarPessoaUseCase atualizarPessoaUseCase;
+    private DeletarPessoaUseCase deletarPessoaUseCase;
 
     @Autowired
     public PessoaEntryPoint(ObterTodasPessoasUseCase obterTodasPessoasUseCase, ObterPessoaPorIdUseCase obterPessoaPorIdUseCase,
-                            SalvarPessoaUseCase salvarPessoaUseCase, AtualizarPessoaUseCase atualizarPessoaUseCase) {
+                            SalvarPessoaUseCase salvarPessoaUseCase, AtualizarPessoaUseCase atualizarPessoaUseCase, DeletarPessoaUseCase deletarPessoaUseCase) {
         this.obterTodasPessoasUseCase = obterTodasPessoasUseCase;
         this.obterPessoaPorIdUseCase = obterPessoaPorIdUseCase;
         this.salvarPessoaUseCase = salvarPessoaUseCase;
         this.atualizarPessoaUseCase = atualizarPessoaUseCase;
+        this.deletarPessoaUseCase = deletarPessoaUseCase;
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -47,14 +49,19 @@ public class PessoaEntryPoint extends GenericController {
         return ResponseEntity.ok(pessoaResponse);
     }
 
+    @RequestMapping(value = "/excluir/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deletarPessoa(@PathVariable("id") Long id) {
+        this.deletarPessoaUseCase.execute(id);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<PageDTO> obterPessoasPaginadas(@RequestParam(value = "page") Integer page, @RequestParam(value = "size") Integer size) {
         PageDTO execute = this.obterTodasPessoasUseCase.execute(page, size);
         return ResponseEntity.ok(execute);
     }
 
-
-    @RequestMapping(value = "/atualizar/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}/atualizar", method = RequestMethod.PUT)
     public ResponseEntity<Long> atualizarPessoa(@PathVariable("id") Long id, @RequestBody PessoaRequest pessoaRequest) {
         Long idPessoa = this.atualizarPessoaUseCase.execute(pessoaRequest.getId(), pessoaRequest.getNome(), pessoaRequest.getTelefone());
         return ResponseEntity.ok(idPessoa);
