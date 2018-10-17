@@ -18,11 +18,19 @@
       <button mat-raised-button color="none" [routerLink]="['/']">Voltar</button>
     </div>
     <div class="btn-center">
-      <button *ngIf="pessoa?.id != null" mat-raised-button color="warn" (click)="excluir()">Excluir</button>
+      <button *ngIf="pessoa?.id != null" mat-raised-button color="warn" 
+        [swal]="{ title: '<h4>Deseja excluir?</h4>', showCloseButton:'true'}"
+        (click)="excluir()"
+        (confirm)="navegarParaHome()">
+        Excluir
+      </button>
     </div>
     <div>
-      <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+      <button [swal]="['Sucesso!', 'Pessoa salva com sucesso!', 'success']" (click)="salvar()"
+         mat-raised-button color="primary"
+        (confirm)="navegarParaHome()">
+        Salvar
+      </button>
     </div>
   </div>
-
 </div>

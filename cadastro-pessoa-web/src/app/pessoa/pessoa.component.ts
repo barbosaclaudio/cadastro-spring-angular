@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ObterPessoaService } from '../providers/obter-pessoa.service';
 
 @Component({
@@ -11,7 +11,9 @@ export class PessoaComponent implements OnInit {
   
   pessoa:any = {}  
 
-  constructor(private activedRouter: ActivatedRoute, private pessoaService:ObterPessoaService) {
+  constructor(private activedRouter: ActivatedRoute, 
+              private pessoaService:ObterPessoaService,
+              private router: Router) {
     
    }
 
@@ -30,8 +32,12 @@ export class PessoaComponent implements OnInit {
 
   excluir() {
     this.pessoaService.excluirPessoa(this.pessoa.id).subscribe(data=> {
-
+  
     })
+  }
+
+  navegarParaHome() {
+    this.router.navigate(['/']);
   }
 
   getPessoa(id:any) {
