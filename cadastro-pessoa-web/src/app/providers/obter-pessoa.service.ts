@@ -27,6 +27,8 @@ export class ObterPessoaService extends BaseService {
         if (!pessoa.id) {
             return this.post(pessoa, ServicesURL.SALVAR_PESSOA, []);
         }
+        console.log(pessoa);
+        
         return this.put(pessoa, ServicesURL.ATUALIZAR_PESSOA, [pessoa.id]);
     }
 }
