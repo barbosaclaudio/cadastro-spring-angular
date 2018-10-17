@@ -61,7 +61,7 @@ public class PessoaEntryPoint extends GenericController {
         return ResponseEntity.ok(execute);
     }
 
-    @RequestMapping(value = "/{id}/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/atualizar/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Long> atualizarPessoa(@PathVariable("id") Long id, @RequestBody PessoaRequest pessoaRequest) {
         Long idPessoa = this.atualizarPessoaUseCase.execute(pessoaRequest.getId(), pessoaRequest.getNome(), pessoaRequest.getTelefone());
         return ResponseEntity.ok(idPessoa);
